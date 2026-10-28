@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Task Optimizer</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+<aside class="sidebar"><div class="brand"><span class="logo">⌘</span>Task Optimizer</div>
+<nav><button class="nav active" data-view="home">⌂ &nbsp; Home</button><button class="nav" data-view="scheduler">▶ &nbsp; Run Scheduler</button><button class="nav" data-view="tests">▤ &nbsp; Test Cases</button><button class="nav" data-view="about">ⓘ &nbsp; About</button></nav>
+<div class="foot">DESIGN &amp; ANALYSIS OF ALGORITHMS<br><small>Student Project Prototype</small></div></aside>
+<main><header><div><p class="eyebrow">DEPENDENCY PLANNING WORKSPACE</p><h1>Compiler Dependency and Task Optimization System</h1><p class="sub">Organize modules <b>•</b> Identify dependencies <b>•</b> Optimize execution order</p></div><span class="pill">● &nbsp; Python Flask Web App</span></header>
+<div id="home">
+<div class="grid">
+<section class="panel"><div class="heading"><div><small>01 / INPUT</small><h2>Input Tasks &amp; Dependencies</h2></div><span class="muted">↳</span></div>
+<label for="tasks">Tasks <span>(comma separated)</span></label><input id="tasks" value="Parse, Compile-A, Compile-B, Link">
+<div class="labelrow"><label for="deps">Dependencies</label><span>one per line</span></div><textarea id="deps" rows="5">Parse Compile-A
+Parse Compile-B
+Compile-A Link
+Compile-B Link</textarea>
+<p class="hint">ⓘ &nbsp; Format: <code>Task A → Task B</code> means A must finish before B.</p>
+<div class="buttons"><button class="primary" id="run">▶ &nbsp; Run Scheduler</button><button class="secondary" id="reset">Reset</button></div><p id="error"></p></section>
+<section class="panel"><div class="heading"><div><small>02 / RESULT</small><h2>Execution Summary</h2></div></div>
+<div id="banner" class="banner"><span id="symbol">✓</span><div><strong id="status">Valid Execution Order</strong><small id="statusnote">Dependency rules satisfied</small></div></div>
+<div class="orderbox"><b>Recommended Task Order</b><div id="order" class="order"></div></div>
+<div class="info">ⓘ &nbsp; <span id="message">No circular dependencies found.</span></div>
+<div class="metrics"><div><span>Tasks (V)</span><b id="v">4</b></div><div><span>Dependencies (E)</span><b id="e">4</b></div><div><span>Complexity</span><b>O(V + E)</b></div></div></section>
+<section class="panel graphpanel"><div class="heading"><div><small>03 / VISUALIZATION</small><h2>Dependency Graph</h2></div><span class="tag">DIRECTED GRAPH</span></div><div id="graph"></div><div class="legend"><span>● Ready / completed</span><span>● Dependent task</span></div></section>
+</div>
+<section class="panel testpanel" id="testpanel"><div class="heading"><div><small>04 / VALIDATION</small><h2>Test Cases</h2><p class="sub">Sample inputs used to validate the dependency scheduler.</p></div><button class="secondary" id="refresh">↻ Refresh tests</button></div>
+<div class="tablewrap"><table><thead><tr><th>Test Case</th><th>Input Size (V, E)</th><th>Expected Output</th><th>Actual Output</th><th>Execution / Analysis</th></tr></thead><tbody id="testrows"></tbody></table></div></section>
+</div>
+<div id="about" class="panel about hidden"><small>PROJECT OVERVIEW</small><h2>About the system</h2><p>This prototype models tasks as vertices and dependencies as directed edges. It uses Kahn’s topological sorting algorithm to find a valid task order and identifies cycles when no complete order exists.</p><div class="metrics"><div><span>Algorithm</span><b>Kahn’s Sort</b></div><div><span>Time Complexity</span><b>O(V + E)</b></div><div><span>Graph Type</span><b>Directed Graph / DAG</b></div></div><p class="hint">Note: this prototype plans task order; it does not compile source code or run tasks in parallel.</p></div>
+</main><script src="/static/app.js"></script></body></html>
